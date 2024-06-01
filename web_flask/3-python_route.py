@@ -10,25 +10,24 @@ app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def index():
-    """Return a simple message."""
-    return 'Hello HBNB!'
+    """Returns a simple message."""
+    return 'Hello Pythonistas!'
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """Return a custom message."""
-    return 'HBNB'
+    """Returns a custom message."""
+    return 'Welcome to Python HBNB!'
 
 @app.route('/c/<text>', strict_slashes=False)
 def cisfun(text):
-    """Return a message with a custom variable."""
-    return 'C ' + text.replace('_', ' ')
+    """Returns a message with a custom variable."""
+    return 'Custom message: ' + text.replace('_', ' ')
 
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def pythoniscool(text='is cool'):
-    """Return a message with an optional variable."""
-    return 'Python ' + text.replace('_', ' ')
+def pythoniscool(text='is fun'):
+    """Returns a message with an optional variable."""
+    return 'Python is ' + text.replace('_', ' ')
 
 if __name__ == '__main__':
-    # Run the app on the specified host and port
     app.run(host='0.0.0.0', port='5000')

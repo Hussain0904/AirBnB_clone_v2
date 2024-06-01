@@ -10,14 +10,13 @@ app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def index():
-    """Return a greeting message."""
-    return 'Hello HBNB!'
+    """Returns a welcome message."""
+    return 'Welcome to HBNB!'
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """Return a custom message."""
-    return 'HBNB'
+    """Returns a special message."""
+    return 'HBNB is amazing!'
 
 if __name__ == '__main__':
-    # Run the app on the specified host and port
     app.run(host='0.0.0.0', port='5000')
