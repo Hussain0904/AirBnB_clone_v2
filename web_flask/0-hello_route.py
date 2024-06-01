@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-A Flask application to start a simple web server
+Start a Flask web application
 """
 
 from flask import Flask
@@ -8,8 +8,8 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
-def welcome():
-    """Returns a greeting."""
+def hello_hbnb():
+    """Return a simple greeting."""
     return 'Hello HBNB!'
 
 if __name__ == '__main__':
