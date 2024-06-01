@@ -1,22 +1,21 @@
 #!/usr/bin/python3
 """
-Flask web application with an additional route
+A Flask application with multiple routes
 """
 
 from flask import Flask
 
-# Initialize the Flask application
 app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
-def index():
-    """Returns a welcome message."""
-    return 'Welcome to HBNB!'
+def welcome():
+    """Returns a greeting."""
+    return 'Hello HBNB!'
 
 @app.route('/hbnb', strict_slashes=False)
-def hbnb():
-    """Returns a special message."""
-    return 'HBNB is amazing!'
+def display_hbnb():
+    """Returns HBNB string."""
+    return 'HBNB'
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5000')
+    app.run(host='0.0.0.0', port=5000)

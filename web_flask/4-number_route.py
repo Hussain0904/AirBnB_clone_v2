@@ -1,38 +1,39 @@
 #!/usr/bin/python3
 """
-Flask web application with number route
+A Flask application with integer route handling
 """
 
 from flask import Flask
 
-# Initialize the Flask application
 app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
-def index():
-    """Returns a simple message."""
-    return 'Hello Numbers!'
+def welcome():
+    """Returns a greeting."""
+    return 'Hello HBNB!'
 
 @app.route('/hbnb', strict_slashes=False)
-def hbnb():
-    """Returns a custom message."""
-    return 'Welcome to Numbers HBNB!'
+def display_hbnb():
+    """Returns HBNB string."""
+    return 'HBNB'
 
 @app.route('/c/<text>', strict_slashes=False)
-def cisfun(text):
-    """Returns a message with a custom variable."""
-    return 'Custom message: ' + text.replace('_', ' ')
+def display_c(text):
+    """Returns C followed by the value of the text variable."""
+    formatted_text = text.replace('_', ' ')
+    return f'C {formatted_text}'
 
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def pythoniscool(text='is cool'):
-    """Returns a message with an optional variable."""
-    return 'Python ' + text.replace('_', ' ')
+def display_python(text='is cool'):
+    """Returns Python followed by the value of the text variable."""
+    formatted_text = text.replace('_', ' ')
+    return f'Python {formatted_text}'
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def imanumber(n):
-    """Returns a message only if the variable is an integer."""
-    return "{:d} is a great number".format(n)
+def display_number(n):
+    """Returns n is a number only if n is an integer."""
+    return f'{n} is a number'
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5000')
+    app.run(host='0.0.0.0', port=5000)

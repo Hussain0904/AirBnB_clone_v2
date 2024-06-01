@@ -1,26 +1,27 @@
 #!/usr/bin/python3
 """
-Flask web application with states and state-specific route
+start Flask application
 """
 
 from flask import Flask, render_template
+from models import *
 from models import storage
-
-# Initialize the Flask application
 app = Flask(__name__)
+
 
 @app.route('/states', strict_slashes=False)
 @app.route('/states/<state_id>', strict_slashes=False)
 def states(state_id=None):
-    """Displays the states and optionally a specific state."""
+    """display the states and cities listed in alphabetical order"""
     states = storage.all("State")
     if state_id is not None:
         state_id = 'State.' + state_id
     return render_template('9-states.html', states=states, state_id=state_id)
 
+
 @app.teardown_appcontext
 def teardown_db(exception):
-    """Closes the storage on teardown."""
+    """closes the storage on teardown"""
     storage.close()
 
 if __name__ == '__main__':
