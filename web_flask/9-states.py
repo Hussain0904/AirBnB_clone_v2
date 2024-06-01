@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Flask application displaying states and their cities
+A Flask application displaying states and their cities
 """
 
 from flask import Flask, render_template
@@ -10,16 +10,16 @@ app = Flask(__name__)
 
 @app.route('/states', strict_slashes=False)
 @app.route('/states/<state_id>', strict_slashes=False)
-def states(state_id=None):
-    """Displays the states and cities listed in alphabetical order."""
+def display_states(state_id=None):
+    """Renders a template with states and their cities."""
     states = storage.all("State")
     if state_id:
         state_id = 'State.' + state_id
     return render_template('9-states.html', states=states, state_id=state_id)
 
 @app.teardown_appcontext
-def teardown(exception):
-    """Closes the storage on teardown."""
+def close_storage(exception):
+    """Closes the storage."""
     storage.close()
 
 if __name__ == '__main__':

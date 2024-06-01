@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Flask application displaying a list of states
+A Flask application listing states
 """
 
 from flask import Flask, render_template
@@ -9,14 +9,14 @@ from models import storage
 app = Flask(__name__)
 
 @app.route('/states_list', strict_slashes=False)
-def states_list():
-    """Displays a HTML page with the states listed in alphabetical order."""
+def list_states():
+    """Renders a template with the list of states."""
     states = sorted(storage.all("State").values(), key=lambda state: state.name)
     return render_template('7-states_list.html', states=states)
 
 @app.teardown_appcontext
-def teardown(exception):
-    """Closes the storage on teardown."""
+def close_storage(exception):
+    """Closes the storage."""
     storage.close()
 
 if __name__ == '__main__':

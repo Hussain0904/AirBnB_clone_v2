@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Flask application with number and template route
+A Flask application with integer template rendering
 """
 
 from flask import Flask, render_template
@@ -8,35 +8,37 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
-def home():
+def welcome():
     """Returns a greeting."""
     return 'Hello HBNB!'
 
 @app.route('/hbnb', strict_slashes=False)
-def hbnb_page():
-    """Returns 'HBNB'."""
+def display_hbnb():
+    """Returns HBNB string."""
     return 'HBNB'
 
 @app.route('/c/<text>', strict_slashes=False)
-def show_c_message(text):
-    """Displays 'C ' followed by the text variable."""
-    return 'C ' + text.replace('_', ' ')
+def display_c(text):
+    """Returns C followed by the value of the text variable."""
+    formatted_text = text.replace('_', ' ')
+    return f'C {formatted_text}'
 
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def show_python_message(text='is cool'):
-    """Displays 'Python ' followed by the text variable."""
-    return 'Python ' + text.replace('_', ' ')
+def display_python(text='is cool'):
+    """Returns Python followed by the value of the text variable."""
+    formatted_text = text.replace('_', ' ')
+    return f'Python {formatted_text}'
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def show_number(n):
-    """Displays 'n is a number' only if n is an integer."""
-    return f"{n} is a number"
+def display_number(n):
+    """Returns n is a number only if n is an integer."""
+    return f'{n} is a number'
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
-def show_number_template(n):
-    """Displays a HTML page only if n is an integer."""
-    return render_template('5-number.html', n=n)
+def display_number_template(n):
+    """Renders a template only if n is an integer."""
+    return render_template('5-number.html', number=n)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
