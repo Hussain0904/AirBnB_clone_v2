@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Flask application with odd or even number route
+Flask application with number, odd or even route
 """
 
 from flask import Flask, render_template
@@ -8,43 +8,41 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
-def home_page():
-    """Return a simple greeting."""
-    return 'Welcome to HBNB!'
+def home():
+    """Returns a greeting."""
+    return 'Hello HBNB!'
 
 @app.route('/hbnb', strict_slashes=False)
-def hbnb():
-    """Return HBNB text."""
+def hbnb_page():
+    """Returns 'HBNB'."""
     return 'HBNB'
 
 @app.route('/c/<text>', strict_slashes=False)
-def c_route(text):
-    """Return text with 'C ' prefix."""
-    processed_text = text.replace('_', ' ')
-    return f'C {processed_text}'
+def show_c_message(text):
+    """Displays 'C ' followed by the text variable."""
+    return 'C ' + text.replace('_', ' ')
 
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def python_route(text='is cool'):
-    """Return text with 'Python ' prefix."""
-    processed_text = text.replace('_', ' ')
-    return f'Python {processed_text}'
+def show_python_message(text='is cool'):
+    """Displays 'Python ' followed by the text variable."""
+    return 'Python ' + text.replace('_', ' ')
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def number_route(n):
-    """Return a text stating if n is a number."""
-    return f'{n} is a number'
+def show_number(n):
+    """Displays 'n is a number' only if n is an integer."""
+    return f"{n} is a number"
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
-def number_template_route(n):
-    """Render a template only if n is an integer."""
-    return render_template('5-number.html', number=n)
+def show_number_template(n):
+    """Displays a HTML page only if n is an integer."""
+    return render_template('5-number.html', n=n)
 
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
-def odd_or_even_route(n):
-    """Render a template to show if the number is odd or even."""
+def show_number_odd_or_even(n):
+    """Displays a HTML page only if n is an integer, showing if it's odd or even."""
     evenness = 'even' if n % 2 == 0 else 'odd'
-    return render_template('6-number_odd_or_even.html', number=n, evenness=evenness)
+    return render_template('6-number_odd_or_even.html', n=n, evenness=evenness)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

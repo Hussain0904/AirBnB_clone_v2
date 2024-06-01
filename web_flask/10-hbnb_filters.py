@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Flask application with filter functionality
+Flask application with filters route
 """
 
 from flask import Flask, render_template
@@ -9,15 +9,15 @@ from models import storage
 app = Flask(__name__)
 
 @app.route('/hbnb_filters', strict_slashes=False)
-def display_filters():
-    """Render a template with filters."""
+def hbnb_filters():
+    """Displays a HTML page with filters."""
     states = storage.all("State").values()
     amenities = storage.all("Amenity").values()
     return render_template('10-hbnb_filters.html', states=states, amenities=amenities)
 
 @app.teardown_appcontext
-def close_storage(exception):
-    """Close the storage."""
+def teardown(exception):
+    """Closes the storage on teardown."""
     storage.close()
 
 if __name__ == '__main__':
