@@ -1,28 +1,28 @@
 #!/usr/bin/python3
 """
-start Flask application
+Flask web application with variable route
 """
 
 from flask import Flask
-app = Flask(__name__)
 
+# Initialize the Flask application
+app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def index():
-    """returns Hello HBNB!"""
+    """Return a simple message."""
     return 'Hello HBNB!'
-
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """returns HBNB"""
+    """Return a custom message."""
     return 'HBNB'
-
 
 @app.route('/c/<text>', strict_slashes=False)
 def cisfun(text):
-    """display “C ” followed by the value of the text variable"""
+    """Return a message with a custom variable."""
     return 'C ' + text.replace('_', ' ')
 
 if __name__ == '__main__':
+    # Run the app on the specified host and port
     app.run(host='0.0.0.0', port='5000')

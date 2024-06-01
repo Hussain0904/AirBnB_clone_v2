@@ -1,58 +1,50 @@
 #!/usr/bin/python3
 """
-start Flask application
+Flask web application with even/odd check
 """
 
 from flask import Flask, render_template
-app = Flask(__name__)
 
+# Initialize the Flask application
+app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def index():
-    """returns Hello HBNB!"""
+    """Return a simple message."""
     return 'Hello HBNB!'
-
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """returns HBNB"""
+    """Return a custom message."""
     return 'HBNB'
-
 
 @app.route('/c/<text>', strict_slashes=False)
 def cisfun(text):
-    """display “C ” followed by the value of the text variable"""
+    """Return a message with a custom variable."""
     return 'C ' + text.replace('_', ' ')
-
 
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def pythoniscool(text='is cool'):
-    """display “Python ”, followed by the value of the text variable"""
+    """Return a message with an optional variable."""
     return 'Python ' + text.replace('_', ' ')
-
 
 @app.route('/number/<int:n>', strict_slashes=False)
 def imanumber(n):
-    """display “n is a number” only if n is an integer"""
+    """Return a message only if the variable is an integer."""
     return "{:d} is a number".format(n)
-
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def numbersandtemplates(n):
-    """display a HTML page only if n is an integer"""
+    """Return an HTML page only if the variable is an integer."""
     return render_template('5-number.html', n=n)
-
 
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def numbersandevenness(n):
-    """display a HTML page only if n is an integer"""
-    if n % 2 == 0:
-        evenness = 'even'
-    else:
-        evenness = 'odd'
-    return render_template('6-number_odd_or_even.html', n=n,
-                           evenness=evenness)
+    """Return an HTML page indicating if a number is even or odd."""
+    evenness = 'even' if n % 2 == 0 else 'odd'
+    return render_template('6-number_odd_or_even.html', n=n, evenness=evenness)
 
 if __name__ == '__main__':
+    # Run the app on the specified host and port
     app.run(host='0.0.0.0', port='5000')
