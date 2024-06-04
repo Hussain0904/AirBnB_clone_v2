@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-A Flask application with multiple routes
+Start a Flask web application with multiple routes
 """
 
 from flask import Flask
@@ -8,14 +8,16 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
-def welcome():
-    """Returns a greeting."""
+def hello_hbnb():
+    """Return a simple greeting."""
     return 'Hello HBNB!'
 
+
 @app.route('/hbnb', strict_slashes=False)
-def display_hbnb():
-    """Returns HBNB string."""
+def hbnb():
+    """Return HBNB string."""
     return 'HBNB'
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
